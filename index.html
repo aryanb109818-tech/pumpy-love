@@ -24,12 +24,19 @@ padding:40px;
 border-radius:20px;
 max-width:420px;
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
+animation:fade 2s ease;
+}
+
+@keyframes fade{
+from{opacity:0; transform:scale(.9);}
+to{opacity:1; transform:scale(1);}
 }
 
 img{
 width:100%;
 border-radius:15px;
 margin-bottom:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
 
 button{
@@ -48,7 +55,7 @@ font-size:16px;
 position:fixed;
 bottom:-10px;
 font-size:24px;
-animation:float 5s linear infinite;
+animation:float 6s linear infinite;
 }
 
 @keyframes float{
@@ -60,9 +67,15 @@ animation:float 5s linear infinite;
 
 <body>
 
+<!-- MUSIC (Ye Fitoor Mera) -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/8qV7a4H0b0E?autoplay=1&loop=1&playlist=8qV7a4H0b0E">
+</iframe>
+
 <div class="card">
 
-<img src="https://i.imgur.com/2DhmtJ4.jpeg">
+<!-- YOUR PHOTO -->
+<img src="https://raw.githubusercontent.com/aryanb109818-tech/pumpy-love/main/photo.jpg">
 
 <h2>Will You Be My Valentine, Pumpy? ❤️</h2>
 
@@ -79,7 +92,7 @@ Happy Valentine’s Day ❤️
 
 <script>
 function sayYes(){
-document.body.innerHTML="<h1 style='color:white;font-size:40px'>Yay Pumpy!! I love you forever ❤️</h1>";
+document.body.innerHTML="<h1 style='color:white;font-size:42px'>Yay Pumpy!! I love you forever ❤️</h1>";
 }
 
 document.getElementById('noBtn').onmouseover=function(){
@@ -94,9 +107,10 @@ heart.className='heart';
 heart.innerHTML='❤️';
 heart.style.left=Math.random()*100+'%';
 document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),5000);
+setTimeout(()=>heart.remove(),6000);
 },500);
 </script>
 
 </body>
 </html>
+
