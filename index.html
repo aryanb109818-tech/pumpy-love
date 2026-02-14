@@ -16,7 +16,7 @@ justify-content:center;
 align-items:center;
 color:white;
 text-align:center;
-overflow:auto; /* SCROLL ENABLED */
+overflow:auto;
 }
 
 /* INTRO SCREEN */
@@ -52,7 +52,7 @@ padding:35px;
 border-radius:22px;
 max-width:420px;
 box-shadow:0 10px 40px rgba(0,0,0,0.25);
-margin:40px 20px; /* space for scroll */
+margin:40px 20px;
 }
 
 /* SLIDESHOW */
@@ -101,12 +101,10 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;}
 <button id="startBtn">Start our moment 💖</button>
 </div>
 
-<!-- YOUTUBE MUSIC -->
-<iframe id="ytMusic"
-src="https://www.youtube.com/embed/8qV7a4H0b0E?enablejsapi=1&loop=1&playlist=8qV7a4H0b0E"
-allow="autoplay"
-style="display:none">
-</iframe>
+<!-- ROMANTIC MUSIC -->
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b4b9f.mp3" type="audio/mpeg">
+</audio>
 
 <canvas id="confetti"></canvas>
 
@@ -132,7 +130,7 @@ style="display:none">
 
 /* START BUTTON + MUSIC */
 document.getElementById("startBtn").addEventListener("click",()=>{
-document.getElementById("ytMusic").src += "&autoplay=1";
+document.getElementById("bgMusic").play();
 document.getElementById("intro").style.display="none";
 });
 
@@ -156,12 +154,29 @@ slide=(slide+1)%slides.length;
 slides[slide].classList.add('active');
 },2500);
 
-/* RUNNING NO BUTTON */
-const noBtn=document.getElementById('noBtn');
-noBtn.addEventListener('mouseover',()=>{
-const x=Math.random()*300-150;
-const y=Math.random()*300-150;
-noBtn.style.transform=`translate(${x}px,${y}px)`;
+/* FUNNY NO BUTTON */
+const noBtn = document.getElementById('noBtn');
+
+const noMessages = [
+"Oops… don’t do this to me 🥺",
+"Think again 😭",
+"My heart just skipped 💔",
+"Are you sure? I’ll cry 😢",
+"Please don’t break my heart ❤️",
+"Okay last chance… say yes? 😌"
+];
+
+let msgIndex = 0;
+
+noBtn.addEventListener('click', () => {
+alert(noMessages[msgIndex]);
+msgIndex = (msgIndex + 1) % noMessages.length;
+});
+
+noBtn.addEventListener('mouseover', () => {
+const x = Math.random()*300-150;
+const y = Math.random()*300-150;
+noBtn.style.transform = `translate(${x}px,${y}px)`;
 });
 
 /* FLOAT HEARTS */
@@ -188,7 +203,6 @@ pieces.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 r:Math.random()*6+4,
-d:Math.random()*150,
 color:`hsl(${Math.random()*360},100%,70%)`
 });
 }
