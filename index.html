@@ -1,156 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pumpy ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Pumpy ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg,#ff758c,#ff7eb3);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: white;
-      text-align: center;
-    }
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+text-align:center;
+}
 
-    .card {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px);
-      padding: 35px;
-      border-radius: 22px;
-      max-width: 420px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-      position: relative;
-      animation: fadeIn 1.2s ease;
-    }
+/* INTRO SCREEN */
+#intro{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
 
-    img {
-      width: 100%;
-      border-radius: 18px;
-      margin-bottom: 20px;
-    }
+/* CARD */
+.card{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+padding:35px;
+border-radius:22px;
+max-width:420px;
+box-shadow:0 10px 40px rgba(0,0,0,0.25);
+}
 
-    h2 {
-      margin-bottom: 10px;
-      font-size: 1.9rem;
-    }
+/* SLIDESHOW */
+.slideshow img{
+width:100%;
+border-radius:18px;
+margin-bottom:20px;
+display:none;
+}
+.slideshow img.active{display:block;}
 
-    p {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
+/* TEXT */
+h2{margin-bottom:10px;font-size:1.9rem;}
+p{font-size:1.05rem;line-height:1.6;margin-bottom:25px;min-height:80px;}
 
-    button {
-      padding: 12px 24px;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: 0.25s;
-    }
+/* BUTTONS */
+button{
+padding:12px 24px;
+border-radius:30px;
+border:none;
+cursor:pointer;
+font-size:1rem;
+transition:0.25s;
+}
+.yes{background:white;color:#ff4f81;font-weight:bold;}
+.no{background:transparent;border:2px solid white;color:white;margin-left:10px;position:relative;}
 
-    .yes {
-      background: white;
-      color: #ff4f81;
-      font-weight: bold;
-    }
+/* HEARTS */
+.heart{
+position:absolute;
+font-size:22px;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-120vh);opacity:0}
+}
 
-    .yes:hover {
-      transform: scale(1.1);
-    }
-
-    .no {
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-      margin-left: 10px;
-      position: relative;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 22px;
-      animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-      0% {transform: translateY(0);opacity:1}
-      100% {transform: translateY(-120vh);opacity:0}
-    }
-
-    @keyframes fadeIn {
-      from {opacity:0; transform: translateY(30px)}
-      to {opacity:1; transform: translateY(0)}
-    }
-
-    .footer{
-      margin-top:20px;
-      font-size:0.9rem;
-      opacity:0.8;
-    }
-  </style>
+/* CONFETTI CANVAS */
+canvas{position:fixed;top:0;left:0;pointer-events:none;}
+</style>
 </head>
+
 <body>
 
-<!-- MUSIC AUTOPLAY -->
-<iframe width="0" height="0" 
- src="https://www.youtube.com/embed/8qV7a4H0b0E?autoplay=1&loop=1&playlist=8qV7a4H0b0E">
-</iframe>
+<!-- INTRO -->
+<div id="intro">
+<h1>For you, Pumpy ❤️</h1>
+<p>Tap anywhere...</p>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+<source src="yefitoor.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="confetti"></canvas>
 
 <div class="card">
 
-  <img src="photo.jpg" alt="us">
+<div class="slideshow">
+<img src="photo.jpg" class="active">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+</div>
 
-  <h2>Will You Be My Valentine, Pumpy? ❤️</h2>
+<h2>Will You Be My Valentine, Pumpy? ❤️</h2>
 
-  <p>
-    I know I haven’t been perfect, and I’m truly sorry for the moments I hurt you.
-    You mean everything to me. I love you deeply and promise to be better every day.
-    Happy Valentine’s Day ❤️
-  </p>
+<p id="typing"></p>
 
-  <button class="yes" onclick="sayYes()">Yes 💖</button>
-  <button class="no" id="noBtn">No 😢</button>
+<button class="yes" onclick="sayYes()">Yes 💖</button>
+<button class="no" id="noBtn">No 😢</button>
 
-  <div class="footer">Made only for you ❤️</div>
 </div>
 
 <script>
 
-function sayYes(){
-  document.body.innerHTML = `
-  <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;font-family:sans-serif;text-align:center;flex-direction:column;">
-  <h1 style="font-size:3rem;">YAYYYY ❤️</h1>
-  <h2>I love you forever, Pumpy 💖</h2>
-  <p>You just made me the happiest person alive 💞</p>
-  </div>`
-}
-
-// RUNNING AWAY NO BUTTON
-const noBtn = document.getElementById('noBtn');
-noBtn.addEventListener('mouseover',()=>{
-  const x = Math.random()*300-150;
-  const y = Math.random()*300-150;
-  noBtn.style.transform=`translate(${x}px,${y}px)`;
+/* INTRO TAP + MUSIC */
+document.getElementById("intro").addEventListener("click",()=>{
+document.getElementById("bgMusic").play();
+document.getElementById("intro").style.display="none";
 });
 
-// FLOATING HEARTS
+/* TYPING MESSAGE */
+const message="I know I haven’t been perfect, and I’m truly sorry for the moments I hurt you. You mean everything to me. I love you deeply and promise to be better every day. Happy Valentine’s Day ❤️";
+let i=0;
+function typing(){
+if(i<message.length){
+document.getElementById("typing").innerHTML+=message.charAt(i);
+i++;
+setTimeout(typing,30);
+}}
+typing();
+
+/* SLIDESHOW */
+let slide=0;
+const slides=document.querySelectorAll('.slideshow img');
 setInterval(()=>{
-  const heart=document.createElement('div');
-  heart.className='heart';
-  heart.innerHTML='❤️';
-  heart.style.left=Math.random()*100+'vw';
-  heart.style.bottom='-20px';
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),6000);
+slides[slide].classList.remove('active');
+slide=(slide+1)%slides.length;
+slides[slide].classList.add('active');
+},2500);
+
+/* RUNNING NO BUTTON */
+const noBtn=document.getElementById('noBtn');
+noBtn.addEventListener('mouseover',()=>{
+const x=Math.random()*300-150;
+const y=Math.random()*300-150;
+noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+/* FLOAT HEARTS */
+setInterval(()=>{
+const heart=document.createElement('div');
+heart.className='heart';
+heart.innerHTML='❤️';
+heart.style.left=Math.random()*100+'vw';
+heart.style.bottom='-20px';
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
 },700);
+
+/* CONFETTI */
+const canvas=document.getElementById('confetti');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let pieces=[];
+
+function launchConfetti(){
+for(let i=0;i<150;i++){
+pieces.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*6+4,
+d:Math.random()*150,
+color:`hsl(${Math.random()*360},100%,70%)`
+});
+}
+animate();
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+pieces.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle=p.color;
+ctx.fill();
+});
+}
+
+/* YES CLICK */
+function sayYes(){
+launchConfetti();
+setTimeout(()=>{
+document.body.innerHTML=`
+<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;text-align:center;flex-direction:column;">
+<h1 style="font-size:3rem;">YAYYYY ❤️</h1>
+<h2>I love you forever, Pumpy 💖</h2>
+<p>You just made me the happiest person alive 💞</p>
+</div>`;
+},1200);
+}
 
 </script>
 
