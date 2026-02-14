@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Pumpy ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+padding:40px;
+border-radius:20px;
+max-width:420px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+img{
+width:100%;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+button{
+padding:12px 22px;
+border:none;
+border-radius:30px;
+margin:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.yes{background:white;color:#ff4f81;font-weight:bold;}
+.no{background:transparent;border:2px solid white;color:white;}
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:24px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="https://i.imgur.com/2DhmtJ4.jpeg">
+
+<h2>Will You Be My Valentine, Pumpy? ❤️</h2>
+
+<p>
+I know I haven’t been perfect, and I’m truly sorry for the moments I hurt you.
+You mean everything to me. I love you deeply and promise to be better every day.
+Happy Valentine’s Day ❤️
+</p>
+
+<button class="yes" onclick="sayYes()">Yes 💖</button>
+<button class="no" id="noBtn">No 😢</button>
+
+</div>
+
+<script>
+function sayYes(){
+document.body.innerHTML="<h1 style='color:white;font-size:40px'>Yay Pumpy!! I love you forever ❤️</h1>";
+}
+
+document.getElementById('noBtn').onmouseover=function(){
+this.style.position='absolute';
+this.style.left=Math.random()*80+'%';
+this.style.top=Math.random()*80+'%';
+};
+
+setInterval(()=>{
+let heart=document.createElement('div');
+heart.className='heart';
+heart.innerHTML='❤️';
+heart.style.left=Math.random()*100+'%';
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},500);
+</script>
+
+</body>
+</html>
