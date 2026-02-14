@@ -91,10 +91,12 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;}
 <p>Tap anywhere...</p>
 </div>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-<source src="yefitoor.mp3" type="audio/mpeg">
-</audio>
+<!-- YOUTUBE MUSIC -->
+<iframe id="ytMusic"
+src="https://www.youtube.com/embed/8qV7a4H0b0E?enablejsapi=1&loop=1&playlist=8qV7a4H0b0E"
+allow="autoplay"
+style="display:none">
+</iframe>
 
 <canvas id="confetti"></canvas>
 
@@ -120,7 +122,7 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;}
 
 /* INTRO TAP + MUSIC */
 document.getElementById("intro").addEventListener("click",()=>{
-document.getElementById("bgMusic").play();
+document.getElementById("ytMusic").src += "&autoplay=1";
 document.getElementById("intro").style.display="none";
 });
 
